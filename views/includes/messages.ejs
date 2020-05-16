@@ -1,0 +1,14 @@
+<div class="messages">
+    <% for(error of errorMsg) { %>
+        <div class="dialog error">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <%= error %>
+        </div>
+    <% } %>
+    <% for(success of successMsg) { %>
+        <div class="dialog success">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <%= success %>
+        </div>
+    <% } %>
+</div>

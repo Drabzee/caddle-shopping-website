@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/admin-product-list.css">
+</head>
+
+<body>
+    <%- include('../includes/header.ejs', {active: 'admin-products'}) %>
+
+    <main class="main">
+        <% if(products.length > 0) { %>
+            <div class="product-list">
+                <% for(prod of products) { %>
+                    <div class="product-list__tile">
+                        <span class="product-list__tile-image-container">
+                            <div style="background-image: url('/<%= prod.image %>');" class="product-list__tile-image"></div>
+                        </span>
+                        <div class="product-list__tile-detail">
+                            <div class="product-list__tile-header">
+                                <h2 class="product-list__tile-title"><%= prod.title %></h2>
+                                <a href="/admin/add-product/<%= prod.id %>"><button class="product-list__tile-edit material-icons">edit</button></a>
+                                <form action="/admin/delete-product" method="POST">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="id" value="<%= prod.id %>">
+                                    <button class="product-list__tile-delete material-icons">clear</button>
+                                </form>
+                            </div>
+                            <h3 class="product-list__tile-price">$ <%= prod.price %></h3>
+                            <p class="product-list__tile-description"><%= prod.description %></p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        <% } else {%>
+            <h1 class="main__heading">No Products Found!</h1>
+        <% } %>
+    </main>
+</body>
+</html>

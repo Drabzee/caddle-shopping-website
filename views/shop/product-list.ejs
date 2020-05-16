@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/shop.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/pagination.css" type="text/css" media="all" />
+</head>
+
+<body>
+
+    <%- include('../includes/header.ejs', {active: 'products'}) %>
+    
+    <main class="main">
+        <% if (products.length != 0) { %>
+            <div class="grid">
+                <% for (prod of products) { %>
+                    <div class="card">
+                        <h2 class="card__title"><%= prod.title %></h2>
+                        <div style="background-image: url('/<%= prod.image %>');" class="card__image"></div>
+                        <h2 class="card__price">$ <%= prod.price %></h2>
+                        <p class="card__description"><%= prod.description %></p>
+                        <form class="card__form" method="POST" action="/cart/add-item">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                            <% if(isAuthenticated) { %>
+                                <input type="hidden" name="id" value="<%= prod.id %>" />
+                                <input type="hidden" name="price" value="<%= prod.price %>" />
+                                <button class="card__button card__button-add">Add to Cart</button>
+                            <% } %>
+                            <a href="/product/<%= prod.id %>"><button type="button" class="card__button card__button-detail">Detail</button></a>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+
+            <%- include('../includes/pagination', {pageCount: pageCount, currentPage: currentPage}) %>
+            
+        <% } else { %>
+            <h1 class="main__heading">No Products Found!</h1>
+        <% } %>
+    </main>
+</body>
+</html>

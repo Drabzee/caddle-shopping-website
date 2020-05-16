@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/cart.css">
+</head>
+
+<body>
+    <%- include('../includes/header.ejs', {active: 'cart'}) %>
+
+    <main class="main">
+        <% if(items.length > 0) { %>
+            <div class="container">
+                <div class="container__heading">
+                    <img class="container__image" src="http://getdrawings.com/free-icon/shopping-cart-icon-transparent-background-74.png" />
+                    <h2 class="container__title">Your shopping cart</h2>
+                    <p class="container__description">We are one of the leading <span class="container__description-highlight">manufacturers and suppliers of products</span>. The offered e cart is specially designed for the transport of good and materials. Our supplied e cart is highly liked and acclaimed by the clients, owing to the simple design and hard wearing construct.</p>
+                </div>
+                <div class="cart-list">
+                    <div class="cart-list__header">
+                        <p class="cart-list__header-qty">QTY</p>
+                        <p class="cart-list__header-title">ITEM</p>
+                        <p class="cart-list__header-price">PRICE</p>
+                    </div>
+                    <div class="cart-list__table">
+                        <% for (item of items) { %>
+                            <div class="cart-list__tile">
+                                <h3 class="cart-list__tile-qty"><%= item.qty %></h3>
+                                <h3 class="cart-list__tile-title"><%= item.product.title %></h3>
+                                <h3 class="cart-list__tile-price">$<%= Math.round((item.product.price*item.qty+Number.EPSILON)*100)/100 %></h3>
+                                <form class="cart-list__tile-delete-form" method="POST" action="/cart/delete-item">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                                    <input type="hidden" name="id" value="<%= item.product._id %>">
+                                    <input type="hidden" name="price" value="<%= Math.round((item.product.price*item.qty+Number.EPSILON)*100)/100 %>">
+                                    <button class="cart-list__tile-delete"><i class="material-icons material-icons-clear">clear</i></button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="cart-list__footer">
+                        <h3 class="cart-list__footer-title">Total :</h3>
+                        <h3 class="cart-list__footer-price">$<%= totalPrice %></h3>
+                        <form class="cart-list__footer-order-form" action="/orders" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                            <button class="cart-list__footer-order-btn">Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% } else { %>
+            <h1 class="main__heading">Empty Cart!</h1>
+            <p class="main__description">No items present in the cart</p>
+        <% } %>
+    </main>
+</body>
+</html>

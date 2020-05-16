@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/product-detail.css">
+</head>
+
+<body>
+    <%- include('../includes/header.ejs', {active: 'products'}) %>
+
+    <main class="main">
+        <div class="detail-card">
+            <div class="detail-card__container">
+                <img class="detail-card__image" src="/<%= product.image %>" />
+                <% if(isAuthenticated) { %>
+                    <form method="POST" action="/cart/add-item">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                        <input type="hidden" name="id" value="<%= product.id %>">
+                        <input type="hidden" name="price" value="<%= product.price %>" />
+                        <button class="detail-card__cart"><i class="material-icons material-icons-cart">add_shopping_cart</i></button>
+                    </form>
+                <% } %>
+            </div>
+            <div class="detail-card__heading">
+                <h2 class="detail-card__title"><%= product.title %></h2>
+                <h4 class="detail-card__price">$<%= product.price %></h4>
+            </div>
+            <p class="detail-card__description"><%= product.description %></p>
+        </div>
+    </main>
+</body>
+</html>

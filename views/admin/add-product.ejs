@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/add-product.css">
+    <link rel="stylesheet" href="/css/message.css">
+</head>
+
+<body>
+    <%- include('../includes/header.ejs', {active: 'add-product'}) %>
+
+    <main class="main">
+
+        <%- include('../includes/messages.ejs') %>
+
+        <form class="form" action="<%= product ? '/admin/update-product' : '/admin/add-product' %>" method="POST" autocomplete="off" enctype="multipart/form-data">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <% if(product) { %>
+                <input type="hidden" name="id" value="<%= product.id %>" />
+            <% } %>
+            <label class="form__label" for="title">Title</label>
+            <input class="form__input-product" type="text" name="title" value="<%= product ? product.title : '' %>" placeholder="Enter the title..." required/>
+            <div class="form__price-qty-container">
+                <div class="form__label-input-container">
+                    <label class="form__label" for="price">Price</label>
+                    <input class="form__input-product" type="number" min="0.00" value="<%= product ? product.price : '' %>" step="0.01" name="price" placeholder="Enter the price..." required/>
+                </div>
+                <div class="form__label-input-container">
+                    <label class="form__label" for="qty">Quantity</label>
+                    <input class="form__input-product" type="number" min="1" value="<%= product ? product.qty : '' %>" step="1" name="qty" placeholder="Enter the quantity..." required/>
+                </div>
+            </div>
+            <label class="form__label" for="image">Image</label>
+            <div class="custom-file-input">
+                <input type="file" name="image">
+                <input class="form__input-product" type="text" placeholder="Upload product image...">
+                <input type="button" value="Upload">
+            </div>
+            <label class="form__label" for="description">Description</label>
+            <textarea class="form__input-product" rows="9" name="description" placeholder="Enter the description..." required><%= product ? product.description : '' %></textarea>
+            <input class="form__input-submit" type="submit" value="<%= product ? 'Update' : 'Add' %> Product" />
+        </form>
+    </main>
+</body>
+</html>

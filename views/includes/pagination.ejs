@@ -1,0 +1,39 @@
+<div class="page">
+    <a
+      class="<%= currentPage == 1 ? 'inactive' : '' %>"
+      href="?page=<%= currentPage-1 %>"
+      onclick="return '<%= currentPage %>' == 1 ? false : true">
+        &laquo;
+    </a>
+    <% if(pageCount <= 5 ) { %>
+        <% for(let i=1 ; i<=pageCount ; i++) { %>
+            <a class="<%= currentPage == i ? 'active' : ''%>" href="?page=<%= i %>"><%= i %></a>
+        <% } %>
+    <% } else { %>
+        <a class="<%= currentPage == 1 ? 'active' : ''%>" href="?page=1">1</a>
+        <% if(currentPage <= 3) { %>
+            <a class="<%= currentPage == 2 ? 'active' : ''%>" href="?page=2">2</a>
+            <a class="<%= currentPage == 3 ? 'active' : ''%>" href="?page=3">3</a>
+            <a class="<%= currentPage == 4 ? 'active' : ''%>" href="?page=4">4</a>
+            <% if(pageCount > 5) { %><p class="ellipsis">...</p><% } %>
+        <% } else if(currentPage > 3 && currentPage < pageCount-2) { %>
+            <p class="ellipsis">...</p>
+            <a href="?page=<%= currentPage-1 %>"><%= currentPage-1 %></a>
+            <a class="active" href="?page=<%= currentPage %>"><%= currentPage %></a>
+            <a href="?page=<%= (+currentPage)+1 %>"><%= (+currentPage)+1 %></a>
+            <p class="ellipsis">...</p>
+        <% } else { %>
+            <% if(pageCount > 5) { %><p class="ellipsis">...</p><% } %>
+            <a class="<%= currentPage == pageCount-3 ? 'active' : ''%>" href="?page=<%= pageCount-3 %>"><%= pageCount-3 %></a>
+            <a class="<%= currentPage == pageCount-2 ? 'active' : ''%>" href="?page=<%= pageCount-2 %>"><%= pageCount-2 %></a>
+            <a class="<%= currentPage == pageCount-1 ? 'active' : ''%>" href="?page=<%= pageCount-1 %>"><%= pageCount-1 %></a>
+        <% } %>
+        <a class="<%= currentPage == pageCount ? 'active' : ''%>" href="?page=<%= pageCount %>"><%= pageCount %></a>
+    <% } %>
+    <a
+      class="<%= currentPage == pageCount ? 'inactive' : '' %>"
+      href="?page=<%= (+currentPage)+1 %>"
+      onclick="return '<%= currentPage %>' == '<%= pageCount %>' ? false : true">
+        &raquo;
+    </a>
+</div>

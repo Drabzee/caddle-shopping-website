@@ -1,0 +1,113 @@
+.main {
+    padding: 3rem 1.5rem;
+}
+
+.container {
+    background-color: #313b57;
+    box-shadow: 1px 1px 7px #00000022;
+    max-width: 450px;
+    border-radius: 0.3rem;
+    margin: 1rem auto;
+}
+
+.heading {
+    color: #dbedf3;
+    font-size: 1.3rem;
+    border-radius: 0.3rem 0.3rem 0 0;
+    background-color: #00818a;
+    padding: 1rem 0rem;
+    text-align: center;
+    border-bottom: 0.1rem solid #dbedf3;
+}
+
+.login-form {
+    padding: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 600px) {
+    .login-form {
+        padding: 3rem 4rem;
+    }
+}
+
+.login-form__input-container {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.login-form__icon {
+    background-color: #3a4564;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0.2rem 0.2rem 0;
+    border: 0.13rem solid #dbedf344;
+    border-left: 0;
+}
+
+.login-form__icon i {
+    color: #dbedf3;
+    font-size: 1.1rem;
+    padding: 0 0.7rem;
+}
+
+.login-form__input {
+    width: 100%;
+    background-color: #3a4564;
+    height: 2.5rem;
+    padding: 0 1rem;
+    padding-right: 0;
+    color: #dbedf3;
+    font-size: 0.7rem;
+    letter-spacing: 0.08rem;
+    outline: 0;
+    border-radius: 0.2rem 0 0 0.2rem;
+    border: 0.13rem solid #dbedf344;
+    border-right: 0;
+}
+
+.login-form__input::placeholder {
+    color: #dbedf388;
+    font-size: 0.7rem;
+}
+
+.login-form__pwd {
+    font: small-caption;
+}
+
+.login-form__btn {
+    background-color: #00818a;
+    border: 0;
+    outline: 0;
+    height: 2.2rem;
+    color: #dbedf3;
+    font-weight: bold;
+    margin: 0.5rem 0.6rem 2rem 0.6rem;
+    font-size: 0.9rem;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+.login-form__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.6rem;
+}
+
+.login-form__signup {
+    font-size: 0.7rem;
+    background-color: #00818a;
+    padding: 0.5rem 1rem;
+    color: #dbedf3;
+    border-radius: 0.2rem;
+    font-weight: bold;
+}
+
+.login-form__forgot-pwd {
+    font-size: 0.7rem;
+    color: #dbedf3;
+    font-weight: bold;
+}

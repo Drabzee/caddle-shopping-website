@@ -1,0 +1,44 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<header class="header">
+    <nav class="header__nav">
+        <div class="header__nav-menu-icon-contianer">
+            <button class="header__menu-icon" id="toggle-button"><i class="material-icons material-icons-menu">menu</i></button>
+        </div>
+        <ul class="header__menu" id="menu">
+            <a class="<%= active == 'shop' ? 'active' : '' %>" href="/">
+                <li class="header__menu-item"><i class="material-icons material-icons-arrow">arrow_right</i>Shop</li>
+            </a>
+            <a class="<%= active == 'products' ? 'active' : '' %>" href="/products">
+                <li class="header__menu-item"><i class="material-icons material-icons-arrow">arrow_right</i>Products</li>
+            </a>
+            <% if(isAuthenticated) { %>
+                <a class="<%= active == 'cart' ? 'active' : '' %>" href="/cart">
+                    <li class="header__menu-item"><i class="material-icons material-icons-arrow">arrow_right</i>Cart</li>
+                </a>
+                <a class="<%= active == 'orders' ? 'active' : '' %>" href="/orders">
+                    <li class="header__menu-item"><i class="material-icons material-icons-arrow">arrow_right</i>Orders</li>
+                </a>
+                <a class="<%= active == 'add-product' ? 'active' : '' %>" href="/admin/add-product">
+                    <li class="header__menu-item"><i class="material-icons material-icons-arrow">arrow_right</i>Add Product</li>
+                </a>
+                <a class="<%= active == 'admin-products' ? 'active' : '' %>" href="/admin/products">
+                    <li class="header__menu-item"><i class="material-icons material-icons-arrow">arrow_right</i>Admin Products</li>
+                </a>
+            <% } else { %>
+            <a class="login <%= (active=='login' || active == 'signup') ? 'active' : '' %>" href="/auth/login">
+                <li class="header__menu-item">
+                    <i class="material-icons material-icons-arrow">arrow_right</i>
+                    <%= active == 'signup' ? 'Sign Up' : 'Login' %>
+                </li>
+            </a>
+            <% } %>
+            <% if(isAuthenticated) { %>
+            <form style="margin-left: auto;" action="/auth/logout" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button class="header__menu-item logout"><i class="material-icons material-icons-arrow">arrow_right</i>Logout</button>
+            </form>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+<script src="/js/toggle-menu.js"></script>

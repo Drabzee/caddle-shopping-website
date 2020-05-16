@@ -1,0 +1,31 @@
+.dialog {
+  padding: 1rem 1.3rem;
+  color: white;
+  border-radius: 0.3rem;
+  max-width: 450px;
+  margin: 0 auto 0.3rem auto;
+  font-size: 0.8rem;
+}
+
+.error {
+    background-color: #d9534f;
+}
+
+.success {
+    background-color: #4b964b;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: #000000aa;
+}

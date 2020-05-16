@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/orders.css">
+</head>
+
+<body>
+    <%- include('../includes/header.ejs', {active: 'orders'}) %>
+
+    <main class="main">
+        <% for(order of orders) { %>
+            <div class="order">
+                <span class="order__label">Order ID : #<%= order._id %></span>
+                <div class="order__list">
+                    <div class="order__header">
+                        <p class="order__header-qty">QTY</p>
+                        <p class="order__header-title">ITEM</p>
+                        <p class="order__header-price">PRICE</p>
+                    </div>
+                    <% for(item of order.items) { %>
+                        <div class="order__list-tile">
+                            <h3 class="order__list-tile-qty"><%= item.qty %></h3>
+                            <h3 class="order__list-tile-title"><%= item.title %></h3>
+                            <h3 class="order__list-tile-price">$<%= ((item.price*item.qty+Number.EPSILON)*100)/100 %></h3>
+                        </div>
+                    <% } %>
+                    <div class="order__footer">
+                        <h3 class="order__total-price">Total Price : <span class="price">$<%= order.totalPrice %></span></h3>
+                        <h3 class="order__total-price">Date : <span class="price"><%= (new Date(order.orderDate)).toDateString() %></span></h3>
+                        <a href="/order/invoice/<%= order._id %>" class="order__invoice">Download Invoice</a>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        <% if(orders.length == 0) { %>
+            <h1 class="main__heading">No Orders!</h1>
+            <p class="main__description">You haven't placed any order yet.</p>
+        <% } %>
+    </main>
+</body>
+</html>

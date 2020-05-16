@@ -1,0 +1,135 @@
+.main {
+    padding: 3rem 1rem 0 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+    .main {
+        padding: 3rem 10rem 0 10rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .main {
+        padding: 3rem 13rem 0 13rem;
+    }
+}
+
+.order {
+    margin-bottom: 2rem;
+}
+
+.order__label {
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    background-color: #00818a;
+    border-radius: 0.5rem 0.5rem 0 0;
+    color: #dbedf3;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.order__list {
+    padding: 1rem 0.5rem 0rem 0.5rem;
+    background-color: #313b57;
+    box-shadow: 1px 1px 7px #00000022;
+    border-top: 0.1rem solid #dbedf3cc;
+}
+
+@media only screen and (min-width: 600px) {
+    .order__list {
+        padding: 1rem 1rem;
+    }
+}
+
+.order__header {
+    display: flex;
+    color: #7e8aac;
+    font-size: 0.7rem;
+    margin-bottom: 0.7rem;
+}
+
+.order__header-qty {
+    text-align: center;
+    width: 2.9rem;
+}
+
+.order__header-price {
+    margin-left: auto;
+    margin-right: 1.7rem;
+}
+
+.order__list-tile {
+    display: flex;
+    height: 3.0rem;
+    border-bottom: 0.1rem solid #424e70;
+    align-items: center;
+}
+
+.order__list-tile-qty {
+    width: 2.9rem;
+    text-align: center;
+    color: #23afb9;
+    font-size: 0.9rem;
+}
+
+.order__list-tile-title {
+    color: #dbedf3;
+    font-size: 0.9rem;
+    flex: 1;
+    line-height: 1.3rem;
+    padding-right: 10px;
+}
+
+.order__list-tile-price {
+    color: #23afb9;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.order__footer {
+    display: flex;
+    flex-direction: column;
+    height: 7.5rem;
+    padding: 0.7rem 0rem;
+    justify-content: space-between;
+}
+
+@media only screen and (min-width: 768px) {
+    .order__footer {
+        height: inherit;
+        padding: 1rem 0rem;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 1rem 0rem;
+    }
+}
+
+.order__total-price {
+    font-size: 1rem;
+    text-align: center;
+    color: #dbedf3;
+}
+
+.order__total-price .price {
+    font-size: 1.1rem;
+    color: #b94b23;
+}
+
+.order__invoice {
+    align-self: center;
+    border: 0.1rem solid #b94b23;
+    background-color: #313b57;
+    color: #b94b23;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .order__total-price .price {
+        font-size: 1.2rem;
+    }
+}
